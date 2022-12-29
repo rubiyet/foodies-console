@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "../redux/store";
 import { setProductss } from "../redux/slices/productSlice";
 import { getCartState, setCart } from "../redux/slices/cartSlice";
@@ -7,7 +7,6 @@ import { getProducts } from "../lib/helper";
 import Image from "next/image";
 
 export default function UserCard() {
-
   const dispatch = useDispatch();
 
   const { data, error, isError, isLoading } = useQuery(
@@ -24,21 +23,34 @@ export default function UserCard() {
     }
   }, [data, dispatch]);
 
-
   const data1 = useSelector(getCartState);
 
   const onClick = (item: number) => {
     const cs = localStorage.getItem("cart");
+    let isAdded = false;
     if (cs) {
       const cart = JSON.parse(cs);
+      console.log("cart", cart);
       cart.map((i: any) => {
-        if (i.id === item) {
+        if (i.item === item) {
+          isAdded = true;
           i.quantity += 1;
         }
+        // else {
+        //   localStorage.setItem("cart", JSON.stringify([...cart, {item, quantity: 1}]));
+        // }
       });
-      localStorage.setItem("cart", JSON.stringify([...cart, {item, quantity: 1}]));
+
+      if (!isAdded) {
+        localStorage.setItem(
+          "cart",
+          JSON.stringify([...cart, { item, quantity: 1 }])
+        );
+      } else {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
     } else {
-      localStorage.setItem("cart", JSON.stringify([{item, quantity: 1}]));
+      localStorage.setItem("cart", JSON.stringify([{ item, quantity: 1 }]));
     }
   };
 
