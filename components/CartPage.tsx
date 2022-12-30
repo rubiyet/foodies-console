@@ -28,55 +28,60 @@ export default function CartPage() {
   return (
     <>
       <div className="w-full flex items-center justify-center">
-        <div className="grid grid-cols-1 gap-3">
-          {cart.length !== 0 ? 
-            cart.map((item: any) =>
-              data?.map((i:  any) => {
-                if (i.id === item.item) {
-                  return (
-                    <div
-                      key={i.id}
-                      className="flex items-center bg-white border border-gray-200 h-20 rounded-lg text-xs"
-                    >
-                      <div className="w-56 flex items-center rounded-r-lg space-x-5">
-                        <Image
-                          src={i.image}
-                          alt="image"
-                          width={860}
-                          height={850}
-                          className="h-20 w-20 rounded-l-lg"
-                        />
-                        <div className="space-y-1">
-                          <div className="text-base">{i.name}</div>
-                          <div>৳ {i.price}</div>
+        <div className="space-y-5">
+          <div className="grid grid-cols-1 gap-3">
+            {cart.length !== 0 ? (
+              cart.map((item: any) =>
+                data?.map((i: any) => {
+                  if (i.id === item.item) {
+                    return (
+                      <div
+                        key={i.id}
+                        className="flex items-center bg-white border border-gray-200 h-20 rounded-lg text-xs"
+                      >
+                        <div className="w-56 flex items-center rounded-r-lg space-x-5">
+                          <Image
+                            src={i.image}
+                            alt="image"
+                            width={860}
+                            height={850}
+                            className="h-20 w-20 rounded-l-lg"
+                          />
+                          <div className="space-y-1">
+                            <div className="text-base">{i.name}</div>
+                            <div>৳ {i.price}</div>
+                          </div>
+                        </div>
+                        <div className="w-40 flex items-center justify-center">
+                          <div className="flex items-center space-x-2">
+                            <Image
+                              src="/subtraction.svg"
+                              alt="minus"
+                              width={15}
+                              height={15}
+                            />
+                            <span>Quantity: </span>
+                            {item.quantity}
+                            <Image
+                              src="/add.svg"
+                              alt="minus"
+                              width={15}
+                              height={15}
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div className="w-40 flex items-center justify-center">
-                        <div className="flex items-center space-x-2">
-                          <Image
-                            src="/subtraction.svg"
-                            alt="minus"
-                            width={15}
-                            height={15}
-                          />
-                          <span>Quantity: </span>
-                          {item.quantity}
-                          <Image
-                            src="/add.svg"
-                            alt="minus"
-                            width={15}
-                            height={15}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-              })
-            )
-           : (
-            <div className="text-center text-xl">No items in cart</div>
-          )}
+                    );
+                  }
+                })
+              )
+            ) : (
+              <div className="text-center text-xl">No items in cart</div>
+            )}
+          </div>
+          <button disabled className="bg-yellow-400 text-black text-sm font-semibold px-4 py-2 rounded-lg">
+            Checkout
+          </button>
         </div>
       </div>
     </>
