@@ -13,6 +13,10 @@ export default function Header() {
     }
   }, []);
 
+  const CartPage = () => {
+    window.location.href = "/cart";
+  };
+
   return (
     <>
       <div className="w-full h-[5rem] bg-black grid grid-cols-1 content-center">
@@ -31,11 +35,10 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-5">
             <Image src="/Vector.svg" alt="search" width={20} height={20} />
-            <Link href="/cart">
-              <button className="">
+
+              <button className="" onClick={CartPage}>
                 <Image src="/Card.svg" alt="cart" width={20} height={20} />
               </button>
-            </Link>
           </div>
         </div>
       </div>
