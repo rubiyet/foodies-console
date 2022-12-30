@@ -125,7 +125,7 @@ export default function UserCard() {
                             alt="veg"
                             width={20}
                             height={20}
-                          />a
+                          />
                         </button>
                       )}
                       {isAdded && !quantityExist && (
