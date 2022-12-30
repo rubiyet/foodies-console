@@ -146,7 +146,6 @@ export default function UserCard() {
                             width={20}
                             height={20}
                           />
-                          {cart.length}
                         </button>
                       )}
                     </div>
